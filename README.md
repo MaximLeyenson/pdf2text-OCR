@@ -10,8 +10,8 @@ GhostScript (gs), [tesseract](https://en.wikipedia.org/wiki/Tesseract)
 Say, in Fedora Linux you install them with
 
 ```bash
-# dnf install -y poppler-utils ghostscript tesseract
-# dnf install -y tesseract-langpack-fra
+$ sudo dnf install -y poppler-utils ghostscript tesseract
+$ sudo dnf install -y tesseract-langpack-fra
 ```
 
 (and whatever other languages you need)
