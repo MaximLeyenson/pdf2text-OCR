@@ -5,15 +5,25 @@ PDF file via Tesseract and produces a plain text
 
 **Usage** 
 
-[to be written]
+```bash
+$ pdf2text-OCR.py <input.pdf> <output.txt> <language> 
+```
+where  \<language\> is a 3-character ISO 639-2 code.
+
+Examples:  
+
+```bash
+$ pdf2text-OCR.py  book.pdf book.txt eng
+$ pdf2text-OCR.py  book.pdf book.txt eng+fra
+```
+
 
 **Requirements**
+  * [poppler-utils](https://en.wikipedia.org/wiki/Poppler_(software)#poppler-utils)(for pdfinfo), 
+  * GhostScript (gs), 
+  * [tesseract](https://en.wikipedia.org/wiki/Tesseract)
 
-*[poppler-utils](https://en.wikipedia.org/wiki/Poppler_(software)#poppler-utils)(for pdfinfo), 
-*GhostScript (gs), 
-*[tesseract](https://en.wikipedia.org/wiki/Tesseract)
-
-Say, in Fedora Linux you install them with
+Say, in Fedora Linux you can install them with
 
 ```bash
 $ sudo dnf install -y poppler-utils ghostscript tesseract
