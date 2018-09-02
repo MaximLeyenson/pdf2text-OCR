@@ -3,9 +3,15 @@
 This simple script performs an OCR (optical character recognition) on a raster 
 PDF file via Tesseract and produces a plain text
 
+**Usage** 
 
-Requirements: [poppler-utils](https://en.wikipedia.org/wiki/Poppler_(software)#poppler-utils)(for pdfinfo), 
-GhostScript (gs), [tesseract](https://en.wikipedia.org/wiki/Tesseract)
+[to be written]
+
+**Requirements**
+
+*[poppler-utils](https://en.wikipedia.org/wiki/Poppler_(software)#poppler-utils)(for pdfinfo), 
+*GhostScript (gs), 
+*[tesseract](https://en.wikipedia.org/wiki/Tesseract)
 
 Say, in Fedora Linux you install them with
 
@@ -17,7 +23,9 @@ $ sudo dnf install -y tesseract-langpack-fra
 (and whatever other languages you need)
 
 
-Remark: You do not need this script if your PDF file already contains a text 
+**Remark**
+
+You do not need this script if your PDF file already contains a text 
 layer.  In this case all you have to do is run 
 ```bash
 $ pdftotext -layout -nopgbrk book.pdf book.txt
