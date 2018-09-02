@@ -1,6 +1,6 @@
 # pdf2text-OCR
 
-This simple script performs an OCR (optycal character recognition) on a raster 
+This simple script performs an OCR (optical character recognition) on a raster 
 PDF file via Tesseract and produces a plain text
 
 
