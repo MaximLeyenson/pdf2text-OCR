@@ -17,6 +17,8 @@ $ pdf2text-OCR.py  book.pdf book.txt eng
 $ pdf2text-OCR.py  book.pdf book.txt eng+fra
 ```
 
+Remark: It should indeed be "eng", not "en"! I should add a verification.
+Otherwise, Tesseract produces an error.
 
 **Installation for one user**
 ```bash

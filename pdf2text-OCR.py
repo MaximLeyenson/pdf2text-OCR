@@ -1,4 +1,6 @@
-#!/usr/bin/python
+#!/usr/bin/python3
+
+# Python 3 version 
 
 # by Maxim Leyenson, <leyenson@gmail.com>
 # under GNU license
@@ -18,35 +20,54 @@
 
 import sys
 import os
-import commands
+# import commands
+import subprocess
+
+import PyPDF2
 
 
 # ------------ This function computes number of pages in a PDF file --
 
 def numberOfPagesInPdfFile(filename):
-    print "[computing number of pages in a pdf file]"
-    command ="pdfinfo " + filename + " | grep --text Pages | sed 's/Pages://g;' "
-    #  --text: for some reason grep sometimes assumes that pdfinfo output is binary
-    print "   executing ", command
-    pages = commands.getoutput(command)
-    print "[got ", pages, " pages]"
-    pages = int(pages)
-    # print "[int() = ", pages, "]"
-    return pages
+    print("[computing number of pages in a pdf file]")
+
+    from PyPDF2 import PdfFileReader
+    # to compute the number of pages in PDF file
+
+    pdf_input = PdfFileReader(open(filename, "rb"))
+
+    #   open("f.pdf", "rb")  is a Python "file object";
+    #   open() is a built-in Python function;
+    #   'b' stands for 'binary';
+    #
+    # PdfFileReader(stream)
+    #     Initializes a PdfFileReader object.
+    #                    stream : A File object
+
+    # getting number of pages:
+    number_of_pages = pdf_input.getNumPages()
+
+    # pages = int(pages)
+    return number_of_pages 
 
 # -------------------- reading input ---------------------
 # -- getting the filenames (i.e. input.pdf output.djvu)
 try:
-    filename =  sys.argv[1];
-    output   =  sys.argv[2];
-    language =  sys.argv[3];
+    filename =  sys.argv[1]
+    output   =  sys.argv[2]
+    language =  sys.argv[3]
+
+    print("file to process:", filename)
+    print("output file", output)
+    print("language: ", language)
+
 except:
-    print 'Usage: %s <input.pdf> <output.txt> <language> ' % sys.argv[0];  #  sys.argv[0] = program name
+    print('Usage: OCR.py <input.pdf> <output.txt> <language> ')
     sys.exit(1) 
 
-print "[creating empty text file]"
+print("[creating empty text file]")
 cmd = 'echo > ' + output
-print '> ' + cmd
+print('> ' + cmd)
 os.system(cmd)
 
 #-- 
@@ -59,28 +80,30 @@ lastpage = numberOfPagesInPdfFile(filename)
 
 
 for i in range (firstpage,lastpage+1):   # 1-(n-1)
-    print "--------------- Page", str(i), "/", lastpage, "---------------"
-    print "(converting page to tiff)"
+    print("--------------- Page", str(i), "/", lastpage, "---------------")
+    print("(converting page to tiff)")
     cmd = 'gs -dBATCH -dNOPAUSE -sDEVICE=tiffgray '
     cmd = cmd + ' -sOutputFile=page.tif '
     cmd = cmd + ' -dFirstPage=' + str(i) + ' -dLastPage=' + str(i)
     cmd = cmd + ' -r300 ' + filename
-    print '> ' + cmd
+    print('> ' + cmd)
     os.system(cmd)
-    print "(running tesseract)"
-    cmd = 'tesseract page.tif  page -l ' + language
-    cmd = cmd +  ' -psm 4 '  # Assume a single column of text of variable sizes.  
-    print '> ' + cmd
+    print("(running tesseract)")
+    cmd = 'tesseract page.tif page -l ' + language
+    #    cmd = cmd +  ' -psm 4 '  # Assume a single column of text of variable sizes.  
+    #  Mint's version of tesseract does not like this
+    print('> ' + cmd)
     os.system(cmd)
-    print "[done]"
+    print("[done]")
     cmd = 'cat page.txt >> ' + output
-    print '> ' + cmd
+    print('> ' + cmd)
     os.system(cmd)
     cmd = 'echo >> ' + output
-    print '> ' + cmd
+    print('> ' + cmd)
     os.system(cmd)
-    cmd = 'rm -vf *.tif '
-    os.system(cmd)
+    # cmd = 'rm -vf *.tif '
+    # os.system(cmd)
 
-cmd = 'rm -vf page.txt'
+# cleaning..
+cmd = 'rm -vf *.tif page.txt'
 os.system(cmd)
