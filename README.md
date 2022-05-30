@@ -18,9 +18,25 @@ $ pdf2text-OCR.py  book.pdf book.txt eng+fra
 ```
 
 
+**Installation for one user**
+```bash
+   $ mkdir -pv ~/bin
+   $ cd ~/bin/
+   $ git clone  https://gitlab.com/maxim.leyenson/pdf2text-OCR
+```
+
+and then add the lines
+
+   ```bash
+   PATH=$PATH:$HOME/bin/pdf2text-OCR
+   export PATH
+   ```
+to your .bashrc file.
+
 **Requirements**
-  * [poppler-utils](https://en.wikipedia.org/wiki/Poppler_(software)#poppler-utils)(for pdfinfo), 
-  * GhostScript (gs), 
+
+  * [poppler-utils](https://en.wikipedia.org/wiki/Poppler_(software)#poppler-utils)  (for pdfinfo),  
+  * GhostScript   (gs), 
   * [tesseract](https://en.wikipedia.org/wiki/Tesseract)
 
 Say, in Fedora Linux you can install them with
