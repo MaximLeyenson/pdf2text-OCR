@@ -63,6 +63,13 @@ try:
 
 except:
     print('Usage: OCR.py <input.pdf> <output.txt> <language> ')
+    print('where  <language> is a 3-character ISO 639-2 code.')
+    print(' ')
+    print('Examples: ')
+    print('   pdf2text-OCR.py  book.pdf book.txt eng')
+    print('   pdf2text-OCR.py  book.pdf book.txt rus')
+    print('   pdf2text-OCR.py  book.pdf book.txt eng+fra')
+    print(' ')
     sys.exit(1) 
 
 print("[creating empty text file]")
