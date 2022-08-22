@@ -70,7 +70,16 @@ except:
     print('   pdf2text-OCR.py  book.pdf book.txt rus')
     print('   pdf2text-OCR.py  book.pdf book.txt eng+fra')
     print(' ')
+    print('some language codes: ')
+    print(' ')
+    print(' English: eng')
+    print(' French:  fra (sic!)')
+    print(' German:  deu')
+    print(' Hebrew:  heb')
+    print(' Italian: ita')
+    print(' Russian: rus')
     sys.exit(1) 
+
 
 print("[creating empty text file]")
 cmd = 'echo > ' + output
